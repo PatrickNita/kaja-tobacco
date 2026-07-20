@@ -1,22 +1,30 @@
+.site-canvas {
+  --section-edge-x: 12vw;
+  --section-edge-y: 12dvh;
+}
+
 .section-shell {
   position: relative;
-  min-height: 100svh;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
   overflow: hidden;
-  border-bottom: 1px solid var(--line);
   background: var(--ink);
   color: var(--paper);
-  scroll-margin-top: 5.2rem;
+  scroll-margin: 0;
 }
 
 .section-heading {
   position: relative;
   z-index: 3;
   display: flex;
+  max-width: calc(100vw - (2 * var(--section-edge-x)));
   align-items: flex-start;
   gap: clamp(1rem, 2.4vw, 2.5rem);
 }
 
 .section-index {
+  flex: 0 0 auto;
   padding-top: 0.42rem;
   color: var(--steel);
   font-family: var(--font-mono);
@@ -25,7 +33,7 @@
 }
 
 .section-title {
-  max-width: min(80vw, 64rem);
+  max-width: min(68vw, 64rem);
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 5.5rem);
@@ -67,14 +75,9 @@
 }
 
 .section-cta:hover,
-.section-cta:focus-visible {
-  color: var(--ink);
-}
-
+.section-cta:focus-visible { color: var(--ink); }
 .section-cta:hover::before,
-.section-cta:focus-visible::before {
-  transform: scaleY(1);
-}
+.section-cta:focus-visible::before { transform: scaleY(1); }
 
 .locale-ru .section-title {
   font-family: var(--font-cyrillic);
@@ -86,7 +89,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 7vw 5vw;
 }
 
 .kaja-mark {
@@ -95,109 +97,74 @@
   width: min(68vw, 66rem);
 }
 
-.strength-section {
-  display: flex;
-  align-items: flex-end;
-  padding: 8rem 7vw 7vw;
-}
-
 .strength-heading {
-  margin-left: 5vw;
-}
-
-.catalogue-section {
-  display: grid;
-  align-items: start;
-  padding: 8rem 7vw 6vw;
+  position: absolute;
+  bottom: var(--section-edge-y);
+  left: var(--section-edge-x);
 }
 
 .catalogue-copy {
-  position: relative;
+  position: absolute;
   z-index: 3;
+  top: var(--section-edge-y);
+  right: var(--section-edge-x);
   display: flex;
+  max-width: calc(100vw - (2 * var(--section-edge-x)));
   flex-direction: column;
   align-items: flex-end;
-  justify-self: end;
   gap: 2rem;
 }
 
-.catalogue-heading {
-  text-align: right;
-}
-
-.catalogue-heading .section-title {
-  max-width: 68vw;
-}
-
-.availability-section {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 18svh 12vw 6vw;
-}
+.catalogue-heading,
+.merch-heading { text-align: right; }
 
 .availability-heading {
-  width: auto;
+  position: absolute;
+  top: var(--section-edge-y);
+  left: var(--section-edge-x);
   text-align: left;
 }
 
-.availability-heading .section-title {
-  max-width: 74vw;
-}
-
-.merch-section {
-  display: flex;
-  align-items: flex-end;
-  padding: 8rem 7vw 7vw;
-}
-
 .merch-copy {
-  position: relative;
+  position: absolute;
   z-index: 3;
+  right: var(--section-edge-x);
+  bottom: var(--section-edge-y);
   display: flex;
+  max-width: calc(100vw - (2 * var(--section-edge-x)));
   flex-direction: column;
   align-items: flex-end;
-  margin-left: auto;
   gap: 2rem;
 }
 
-.merch-heading {
-  text-align: right;
-}
-
-.contact-section {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 8rem 12vw 12svh;
-}
-
 .contact-heading {
-  width: auto;
+  position: absolute;
+  right: var(--section-edge-x);
+  bottom: var(--section-edge-y);
   align-items: center;
   justify-content: flex-end;
-  text-align: center;
-}
-
-.contact-heading .section-title {
   text-align: right;
 }
 
 @media (max-width: 767px) {
-  .section-shell { scroll-margin-top: 4.15rem; }
-  .section-title { max-width: 74vw; font-size: clamp(2.5rem, 12vw, 4.5rem); }
-  .section-index { padding-top: 0.2rem; }
-  .kaja-section { padding: 6rem 9vw 3rem; }
+  .site-canvas {
+    --section-edge-x: 10vw;
+    --section-edge-y: max(5.25rem, 10dvh);
+  }
+
+  .section-heading { gap: 0.8rem; }
+  .section-title {
+    max-width: calc(100vw - (2 * var(--section-edge-x)) - 2.5rem);
+    font-size: clamp(2.2rem, 10vw, 4.25rem);
+    overflow-wrap: anywhere;
+  }
+  .section-index { padding-top: 0.2rem; font-size: 0.5rem; }
   .kaja-mark { width: 78vw; }
-  .strength-section,
-  .catalogue-section,
-  .merch-section { padding: 6rem 9vw 3.5rem; }
-  .availability-section { padding: 20svh 10vw 3.5rem; }
-  .contact-section { padding: 6rem 10vw 10svh; }
-  .strength-heading { margin-left: 0; }
   .catalogue-copy,
   .merch-copy { gap: 1.4rem; }
-  .section-cta { min-width: 9.5rem; padding: 0.9rem 1.2rem; font-size: 0.58rem; }
-  .catalogue-heading .section-title,
-  .availability-heading .section-title { max-width: 74vw; overflow-wrap: anywhere; }
+  .section-cta {
+    min-width: 9.5rem;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.58rem;
+  }
 }

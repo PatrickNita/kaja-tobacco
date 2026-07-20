@@ -17,6 +17,10 @@ export type SectionId = (typeof sectionIds)[number];
 export type DestinationId = (typeof destinationIds)[number];
 export type PathLocale = (typeof pathLocales)[number];
 
+export type LocalizedRoute =
+  | { kind: "home"; section?: SectionId }
+  | { destination: DestinationId; kind: "destination" };
+
 export type PageCopy = {
   languageName: string;
   gate: {
@@ -25,6 +29,9 @@ export type PageCopy = {
     language: string;
   };
   actions: Record<DestinationId, string>;
+  navigation: {
+    returnHome: string;
+  };
   sections: Record<SectionId, string>;
 };
 
@@ -33,6 +40,7 @@ export const content: Record<Locale, PageCopy> = {
     languageName: "English",
     gate: { label: "Are you 18 or older?", confirm: "Enter", language: "Language" },
     actions: { catalogue: "CHECK CATALOGUE", merch: "CHECK MERCH" },
+    navigation: { returnHome: "RETURN HOME" },
     sections: {
       kaja: "KAJA",
       strength: "STRENGTH",
@@ -46,6 +54,7 @@ export const content: Record<Locale, PageCopy> = {
     languageName: "Deutsch",
     gate: { label: "Bist du 18 oder älter?", confirm: "Eintreten", language: "Sprache" },
     actions: { catalogue: "KATALOG ANSEHEN", merch: "MERCH ANSEHEN" },
+    navigation: { returnHome: "ZURÜCK ZUR STARTSEITE" },
     sections: {
       kaja: "KAJA",
       strength: "STÄRKE",
@@ -59,6 +68,7 @@ export const content: Record<Locale, PageCopy> = {
     languageName: "Español",
     gate: { label: "¿Tienes 18 años o más?", confirm: "Entrar", language: "Idioma" },
     actions: { catalogue: "VER CATÁLOGO", merch: "VER MERCH" },
+    navigation: { returnHome: "VOLVER AL INICIO" },
     sections: {
       kaja: "KAJA",
       strength: "FUERZA",
@@ -72,6 +82,7 @@ export const content: Record<Locale, PageCopy> = {
     languageName: "Русский",
     gate: { label: "Вам уже исполнилось 18 лет?", confirm: "Войти", language: "Язык" },
     actions: { catalogue: "СМОТРЕТЬ КАТАЛОГ", merch: "СМОТРЕТЬ МЕРЧ" },
+    navigation: { returnHome: "НА ГЛАВНУЮ" },
     sections: {
       kaja: "KAJA",
       strength: "СИЛА",
@@ -85,6 +96,7 @@ export const content: Record<Locale, PageCopy> = {
     languageName: "Română",
     gate: { label: "Ai împlinit 18 ani?", confirm: "Intră", language: "Limbă" },
     actions: { catalogue: "VEZI CATALOGUL", merch: "VEZI MERCH" },
+    navigation: { returnHome: "ÎNAPOI ACASĂ" },
     sections: {
       kaja: "KAJA",
       strength: "TĂRIE",
@@ -104,6 +116,15 @@ export function destinationPath(locale: Locale, destination: DestinationId) {
   return locale === "en"
     ? `/${destination}`
     : `/${locale}/${destination}`;
+}
+
+export function localizedRoutePath(locale: Locale, route: LocalizedRoute) {
+  if (route.kind === "destination") {
+    return destinationPath(locale, route.destination);
+  }
+
+  const path = localePath(locale);
+  return route.section ? `${path}#${route.section}` : path;
 }
 
 export function isPathLocale(value: string): value is PathLocale {

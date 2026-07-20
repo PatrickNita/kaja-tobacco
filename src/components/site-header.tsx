@@ -2,20 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import {
+  localePath,
   sectionIds,
+  type DestinationId,
+  type Locale,
   type PageCopy,
   type SectionId,
 } from "@/content/translations";
 
 type SiteHeaderProps = {
   copy: PageCopy;
+  destination?: DestinationId;
+  locale: Locale;
 };
 
-export function SiteHeader({ copy }: SiteHeaderProps) {
+export function SiteHeader({ copy, destination, locale }: SiteHeaderProps) {
   const [activeSection, setActiveSection] = useState<SectionId>("kaja");
 
   useEffect(() => {
+    if (destination) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -31,31 +39,47 @@ export function SiteHeader({ copy }: SiteHeaderProps) {
 
     sectionIds.forEach((id) => observer.observe(document.getElementById(id)!));
     return () => observer.disconnect();
-  }, []);
+  }, [destination]);
+
+  const homeHref = destination
+    ? `${localePath(locale)}#${destination}`
+    : "#kaja";
+  const route = destination
+    ? { destination, kind: "destination" as const }
+    : { kind: "home" as const, section: activeSection };
 
   return (
     <header className="site-header">
-      <a aria-label="KAJA" className="brand-chip" href="#kaja">
-        <BrandLogo className="h-auto w-[4.75rem]" priority />
-      </a>
-      <nav aria-label="Primary" className="nav-rail">
-        <ul className="nav-list">
-          {sectionIds.map((id, index) => (
-            <li key={id}>
-              <a
-                aria-current={activeSection === id ? "location" : undefined}
-                className="nav-link"
-                href={`#${id}`}
-              >
-                <span aria-hidden="true" className="nav-index">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="nav-label">{copy.sections[id]}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div className="header-start">
+        <a aria-label="KAJA" className="brand-chip" href={homeHref}>
+          <BrandLogo className="h-auto w-[4.75rem]" priority />
+        </a>
+        <LanguageSwitcher locale={locale} route={route} />
+      </div>
+      {destination ? (
+        <a className="return-home" href={localePath(locale)}>
+          {copy.navigation.returnHome}
+        </a>
+      ) : (
+        <nav aria-label="Primary" className="nav-rail">
+          <ul className="nav-list">
+            {sectionIds.map((id, index) => (
+              <li key={id}>
+                <a
+                  aria-current={activeSection === id ? "location" : undefined}
+                  className="nav-link"
+                  href={`#${id}`}
+                >
+                  <span aria-hidden="true" className="nav-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="nav-label">{copy.sections[id]}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

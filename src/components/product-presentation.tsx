@@ -25,7 +25,7 @@ export function ProductPresentation({ copy, locale }: ProductPresentationProps) 
       <AccessOverlay copy={copy} locale={locale} />
       <RevealObserver />
       <SiteFrame />
-      <SiteHeader copy={copy} />
+      <SiteHeader copy={copy} locale={locale} />
       <main>
         <KajaSection />
         <StrengthSection title={copy.sections.strength} />

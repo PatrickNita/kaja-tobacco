@@ -1,4 +1,6 @@
 :root {
+  --frame-inset: 0.8rem;
+  --header-rule-y: 5.2rem;
   --ink: #000;
   --paper: #f1f0eb;
   --graphite: #5d5d5a;
@@ -9,6 +11,13 @@
   --font-sans: "IBM Plex Sans Condensed";
   --font-cyrillic: "IBM Plex Sans";
   --font-mono: "IBM Plex Mono";
+}
+
+@media (max-width: 767px) {
+  :root {
+    --frame-inset: 0.45rem;
+    --header-rule-y: 4.15rem;
+  }
 }
 
 @theme inline {

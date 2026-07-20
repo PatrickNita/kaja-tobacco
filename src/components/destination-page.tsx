@@ -1,8 +1,7 @@
 import { AccessOverlay } from "@/components/access-overlay";
-import { BrandLogo } from "@/components/brand-logo";
 import { SiteFrame } from "@/components/site-frame";
+import { SiteHeader } from "@/components/site-header";
 import {
-  localePath,
   type DestinationId,
   type Locale,
   type PageCopy,
@@ -23,15 +22,7 @@ export function DestinationPage({
     <div className={`site-canvas destination-canvas locale-${locale}`} lang={locale}>
       <AccessOverlay copy={copy} locale={locale} />
       <SiteFrame />
-      <header className="destination-header">
-        <a
-          aria-label="KAJA"
-          className="destination-home"
-          href={`${localePath(locale)}#${destination}`}
-        >
-          <BrandLogo className="h-auto w-[4.75rem]" priority />
-        </a>
-      </header>
+      <SiteHeader copy={copy} destination={destination} locale={locale} />
       <main className="destination-main">
         <div aria-hidden="true" className="destination-wordmark">KAJA</div>
         <h1 className="destination-title">{copy.sections[destination]}</h1>

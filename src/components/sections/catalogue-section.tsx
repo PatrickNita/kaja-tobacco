@@ -19,7 +19,6 @@ export function CatalogueSection({ href, label, title }: CatalogueSectionProps) 
           <span className={`catalogue-card catalogue-card-${item + 1}`} key={item} />
         ))}
       </div>
-      <div aria-hidden="true" className="catalogue-ghost">KAJA</div>
     </section>
   );
 }

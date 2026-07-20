@@ -11,9 +11,8 @@
   background: var(--ink);
 }
 
-.product-panel {
-  width: 100%;
-  height: 100dvh;
+.product-gallery {
+  --product-gap: clamp(0.5rem, 1vw, 1rem);
   padding: calc(var(--header-rule-y) + 4dvh)
     calc(var(--frame-inset) + var(--frame-axis-offset) + 1vw)
     calc(var(--frame-inset) + 4dvh);
@@ -25,9 +24,11 @@
   height: 100%;
   padding: 0;
   margin: 0;
-  gap: clamp(0.5rem, 1vw, 1rem);
+  gap: var(--product-gap);
+  grid-auto-rows: calc(
+    (100dvh - var(--header-rule-y) - var(--frame-inset) - 8dvh - var(--product-gap)) / 2
+  );
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
   list-style: none;
 }
 
@@ -88,34 +89,29 @@
 .locale-ru .product-title,
 .locale-ru .product-badge { font-family: var(--font-cyrillic); }
 
-.product-card-empty { pointer-events: none; }
-
 @media (min-width: 768px) and (max-width: 1023px) {
   .product-grid {
+    grid-auto-rows: calc(
+      (100dvh - var(--header-rule-y) - var(--frame-inset) - 8dvh - var(--product-gap) - var(--product-gap)) / 3
+    );
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767px) {
-  .product-panel {
-    height: auto;
+  .product-gallery {
     padding: calc(var(--header-rule-y) + 4dvh)
-      calc(var(--frame-inset) + var(--frame-axis-offset)) 0;
+      calc(var(--frame-inset) + var(--frame-axis-offset))
+      calc(var(--frame-inset) + 4dvh);
   }
-
-  .product-panel + .product-panel { padding-top: 0.5rem; }
 
   .product-grid {
     height: auto;
     gap: 0.5rem;
+    grid-auto-rows: minmax(14rem, auto);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: none;
   }
 
-  .product-card { min-height: 14rem; }
-  .product-card-empty { display: none; }
   .product-title { right: 0.65rem; bottom: 0.65rem; left: 0.65rem; font-size: 0.58rem; }
   .product-badge { top: 0.65rem; left: 0.65rem; font-size: 0.52rem; }
-  .product-panel:last-child { padding-bottom: calc(var(--frame-inset) + 4dvh); }
 }

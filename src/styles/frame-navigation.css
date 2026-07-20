@@ -40,11 +40,11 @@
 .site-header {
   position: fixed;
   z-index: 42;
-  top: var(--frame-inset);
+  top: 0;
   right: 0;
   left: 0;
   display: flex;
-  height: calc(var(--header-rule-y) - var(--frame-inset));
+  height: var(--header-rule-y);
   align-items: stretch;
   padding: 0 1.35rem;
   border-bottom: 1px solid var(--line);
@@ -154,8 +154,6 @@
 
 .return-home:hover,
 .return-home:focus-visible { color: var(--paper); }
-.return-home:hover::after,
-.return-home:focus-visible::after { transform: scaleX(1); }
 
 .nav-rail {
   min-width: 0;
@@ -218,6 +216,8 @@
   transform-origin: left;
   transition: transform 320ms ease;
 }
+
+.nav-link.return-home::after { display: none; }
 
 .nav-link:hover,
 .nav-link[aria-current="location"] {

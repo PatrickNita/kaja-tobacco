@@ -1,0 +1,21 @@
+.reveal-up,
+.reveal-scale {
+  opacity: 0;
+  transition: opacity 700ms ease, transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-up { transform: translateY(2.5rem); }
+.reveal-scale { transform: scale(0.94); }
+.reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

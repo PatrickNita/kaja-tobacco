@@ -8,7 +8,11 @@ import { ContactSection } from "@/components/sections/contact-section";
 import { KajaSection } from "@/components/sections/kaja-section";
 import { MerchSection } from "@/components/sections/merch-section";
 import { StrengthSection } from "@/components/sections/strength-section";
-import type { Locale, PageCopy } from "@/content/translations";
+import {
+  destinationPath,
+  type Locale,
+  type PageCopy,
+} from "@/content/translations";
 
 type ProductPresentationProps = {
   copy: PageCopy;
@@ -25,9 +29,17 @@ export function ProductPresentation({ copy, locale }: ProductPresentationProps) 
       <main>
         <KajaSection />
         <StrengthSection title={copy.sections.strength} />
-        <CatalogueSection title={copy.sections.catalogue} />
+        <CatalogueSection
+          href={destinationPath(locale, "catalogue")}
+          label={copy.actions.catalogue}
+          title={copy.sections.catalogue}
+        />
         <AvailabilitySection title={copy.sections.availability} />
-        <MerchSection title={copy.sections.merch} />
+        <MerchSection
+          href={destinationPath(locale, "merch")}
+          label={copy.actions.merch}
+          title={copy.sections.merch}
+        />
         <ContactSection title={copy.sections.contact} />
       </main>
     </div>

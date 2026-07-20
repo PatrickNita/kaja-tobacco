@@ -35,6 +35,47 @@
   text-transform: uppercase;
 }
 
+.section-cta {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  min-width: 11rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  padding: 1rem 1.6rem;
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.section-cta::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--paper);
+  content: "";
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.section-cta:hover,
+.section-cta:focus-visible {
+  color: var(--ink);
+}
+
+.section-cta:hover::before,
+.section-cta:focus-visible::before {
+  transform: scaleY(1);
+}
+
 .locale-ru .section-title {
   font-family: var(--font-cyrillic);
   font-weight: 400;
@@ -70,8 +111,17 @@
   padding: 8rem 7vw 6vw;
 }
 
-.catalogue-heading {
+.catalogue-copy {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   justify-self: end;
+  gap: 2rem;
+}
+
+.catalogue-heading {
   text-align: right;
 }
 
@@ -81,15 +131,14 @@
 
 .availability-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8rem 7vw 6vw;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 18svh 12vw 6vw;
 }
 
 .availability-heading {
-  width: 100%;
-  justify-content: center;
-  text-align: center;
+  width: auto;
+  text-align: left;
 }
 
 .availability-heading .section-title {
@@ -102,23 +151,36 @@
   padding: 8rem 7vw 7vw;
 }
 
-.merch-heading {
+.merch-copy {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin-left: auto;
+  gap: 2rem;
+}
+
+.merch-heading {
   text-align: right;
 }
 
 .contact-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8rem 7vw 6vw;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8rem 12vw 12svh;
 }
 
 .contact-heading {
-  width: 100%;
+  width: auto;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   text-align: center;
+}
+
+.contact-heading .section-title {
+  text-align: right;
 }
 
 @media (max-width: 767px) {
@@ -129,10 +191,13 @@
   .kaja-mark { width: 78vw; }
   .strength-section,
   .catalogue-section,
-  .availability-section,
-  .merch-section,
-  .contact-section { padding: 6rem 9vw 3.5rem; }
+  .merch-section { padding: 6rem 9vw 3.5rem; }
+  .availability-section { padding: 20svh 10vw 3.5rem; }
+  .contact-section { padding: 6rem 10vw 10svh; }
   .strength-heading { margin-left: 0; }
+  .catalogue-copy,
+  .merch-copy { gap: 1.4rem; }
+  .section-cta { min-width: 9.5rem; padding: 0.9rem 1.2rem; font-size: 0.58rem; }
   .catalogue-heading .section-title,
   .availability-heading .section-title { max-width: 74vw; overflow-wrap: anywhere; }
 }

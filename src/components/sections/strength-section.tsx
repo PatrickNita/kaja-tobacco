@@ -5,10 +5,12 @@ type StrengthSectionProps = {
 export function StrengthSection({ title }: StrengthSectionProps) {
   return (
     <section className="section-shell strength-section" id="strength">
-      <div aria-hidden="true" className="strength-arches" data-reveal>
-        <span /><span /><span />
+      <div aria-hidden="true" className="strength-field" data-reveal>
+        <span /><span /><span /><span />
       </div>
-      <h2 className="section-title strength-title reveal-up" data-reveal>{title}</h2>
+      <div aria-hidden="true" className="strength-ghost">{title}</div>
+      <SectionHeading className="strength-heading" index="02" title={title} />
     </section>
   );
 }
+import { SectionHeading } from "@/components/sections/section-heading";

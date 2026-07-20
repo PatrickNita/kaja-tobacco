@@ -1,4 +1,4 @@
-import { BrandLogo } from "@/components/brand-logo";
+import { SectionHeading } from "@/components/sections/section-heading";
 
 type CatalogueSectionProps = {
   title: string;
@@ -7,14 +7,13 @@ type CatalogueSectionProps = {
 export function CatalogueSection({ title }: CatalogueSectionProps) {
   return (
     <section className="section-shell catalogue-section" id="catalogue">
-      <h2 className="section-title catalogue-title reveal-up" data-reveal>{title}</h2>
-      <div aria-hidden="true" className="catalogue-grid reveal-scale" data-reveal>
+      <SectionHeading className="catalogue-heading" index="03" title={title} />
+      <div aria-hidden="true" className="catalogue-stack reveal-scale" data-reveal>
         {[0, 1, 2, 3].map((item) => (
-          <div className="catalogue-cell" key={item}>
-            <BrandLogo className="h-auto w-2/3 opacity-35" />
-          </div>
+          <span className={`catalogue-card catalogue-card-${item + 1}`} key={item} />
         ))}
       </div>
+      <div aria-hidden="true" className="catalogue-ghost">KAJA</div>
     </section>
   );
 }

@@ -13,6 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full scroll-smooth antialiased">
+      <head>
+        <link href="https://use.typekit.net" rel="preconnect" />
+        <link href="https://use.typekit.net/nbc2obq.css" rel="stylesheet" />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );

@@ -1,16 +1,21 @@
 :root {
-  --paper: #ebe9e3;
-  --ink: #050505;
-  --steel: #8a8984;
-  --line-dark: rgba(5, 5, 5, 0.24);
-  --line-light: rgba(235, 233, 227, 0.24);
+  --ink: #000;
+  --paper: #f1f0eb;
+  --graphite: #5d5d5a;
+  --steel: #9a9993;
+  --line: rgba(241, 240, 235, 0.2);
+  --line-strong: rgba(241, 240, 235, 0.42);
+  --font-display: "gia-variable";
+  --font-sans: "IBM Plex Sans Condensed";
+  --font-cyrillic: "IBM Plex Sans";
+  --font-mono: "IBM Plex Mono";
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-ink: var(--ink);
-  --font-sans: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 * {
@@ -26,7 +31,7 @@ body {
   margin: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 
 ::selection {
@@ -41,22 +46,70 @@ button {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid currentColor;
+  outline: 1px solid var(--paper);
   outline-offset: 4px;
 }
 
-.site-canvas {
+.site-canvas,
+.site-canvas main {
   position: relative;
   background: var(--ink);
+}
+
+.site-canvas {
+  isolation: isolate;
 }
 
 .site-canvas::after {
   position: fixed;
   z-index: 45;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
   content: "";
   pointer-events: none;
   mix-blend-mode: soft-light;
-  opacity: 0.055;
+  opacity: 0.045;
+}
+
+.gate-copy {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  font-weight: 420;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.locale-ru .gate-copy {
+  font-family: var(--font-cyrillic);
+}
+
+.gate-confirm {
+  min-width: 11rem;
+  border: 1px solid var(--line-strong);
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.gate-confirm:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.gate-language-label,
+.gate-locales {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.gate-language-label {
+  color: rgba(241, 240, 235, 0.45);
 }

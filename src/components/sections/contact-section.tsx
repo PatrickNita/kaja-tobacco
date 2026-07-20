@@ -5,8 +5,12 @@ type ContactSectionProps = {
 export function ContactSection({ title }: ContactSectionProps) {
   return (
     <section className="section-shell contact-section" id="contact">
-      <div aria-hidden="true" className="contact-lines" data-reveal><span /><span /></div>
-      <h2 className="section-title contact-title reveal-up" data-reveal>{title}</h2>
+      <div aria-hidden="true" className="contact-lines" data-reveal>
+        <span /><span /><span /><span />
+      </div>
+      <div aria-hidden="true" className="contact-glyph">K</div>
+      <SectionHeading className="contact-heading" index="06" title={title} />
     </section>
   );
 }
+import { SectionHeading } from "@/components/sections/section-heading";

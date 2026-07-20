@@ -40,14 +40,17 @@ export function SiteHeader({ copy }: SiteHeaderProps) {
       </a>
       <nav aria-label="Primary" className="nav-rail">
         <ul className="nav-list">
-          {sectionIds.map((id) => (
+          {sectionIds.map((id, index) => (
             <li key={id}>
               <a
                 aria-current={activeSection === id ? "location" : undefined}
                 className="nav-link"
                 href={`#${id}`}
               >
-                {copy.sections[id]}
+                <span aria-hidden="true" className="nav-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="nav-label">{copy.sections[id]}</span>
               </a>
             </li>
           ))}

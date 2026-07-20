@@ -17,7 +17,7 @@ type ProductPresentationProps = {
 
 export function ProductPresentation({ copy, locale }: ProductPresentationProps) {
   return (
-    <div className="site-canvas" lang={locale}>
+    <div className={`site-canvas locale-${locale}`} lang={locale}>
       <AccessOverlay copy={copy} locale={locale} />
       <RevealObserver />
       <SiteFrame />

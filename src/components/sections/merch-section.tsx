@@ -1,4 +1,5 @@
 import { BrandLogo } from "@/components/brand-logo";
+import { SectionHeading } from "@/components/sections/section-heading";
 
 type MerchSectionProps = {
   title: string;
@@ -7,10 +8,11 @@ type MerchSectionProps = {
 export function MerchSection({ title }: MerchSectionProps) {
   return (
     <section className="section-shell merch-section" id="merch">
-      <div aria-hidden="true" className="merch-arch reveal-scale" data-reveal>
-        <BrandLogo className="h-auto w-[72%]" />
+      <div aria-hidden="true" className="merch-frame reveal-scale" data-reveal>
+        <BrandLogo className="merch-mark h-auto" />
       </div>
-      <h2 className="section-title merch-title reveal-up" data-reveal>{title}</h2>
+      <div aria-hidden="true" className="merch-slash" />
+      <SectionHeading className="merch-heading" index="05" title={title} />
     </section>
   );
 }

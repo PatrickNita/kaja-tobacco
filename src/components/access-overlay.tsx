@@ -24,7 +24,7 @@ export function AccessOverlay({ copy, locale }: AccessOverlayProps) {
   const [phase, setPhase] = useState<Phase>("checking");
 
   useEffect(() => {
-    let removeLoadListener: (() => void) | undefined;
+    let cancelled = false;
     const frame = window.requestAnimationFrame(() => {
       const accessConfirmed = sessionStorage.getItem(ACCESS_KEY) === "true";
       const preloaderSeen = sessionStorage.getItem(PRELOADER_KEY) === "true";
@@ -36,23 +36,28 @@ export function AccessOverlay({ copy, locale }: AccessOverlayProps) {
       }
 
       setPhase("preloader");
-      const finishPreloader = () => {
+      const finishPreloader = async () => {
+        if (document.readyState !== "complete") {
+          await new Promise<void>((resolve) => {
+            window.addEventListener("load", () => resolve(), { once: true });
+          });
+        }
+
+        const giaFaces = await document.fonts.load('400 1rem "gia-variable"');
+        if (giaFaces.length === 0) {
+          throw new Error("Gia Variable failed to load from Adobe Fonts.");
+        }
+        if (cancelled) return;
+
         sessionStorage.setItem(PRELOADER_KEY, "true");
         setPhase(nextPhase);
       };
-
-      if (document.readyState === "complete") {
-        window.requestAnimationFrame(finishPreloader);
-        return;
-      }
-
-      window.addEventListener("load", finishPreloader, { once: true });
-      removeLoadListener = () => window.removeEventListener("load", finishPreloader);
+      void finishPreloader();
     });
 
     return () => {
+      cancelled = true;
       window.cancelAnimationFrame(frame);
-      removeLoadListener?.();
     };
   }, []);
 
@@ -81,21 +86,21 @@ export function AccessOverlay({ copy, locale }: AccessOverlayProps) {
       {phase === "gate" ? (
         <div className="gate-enter flex w-full max-w-3xl flex-col items-center text-center">
           <BrandLogo className="h-auto w-[min(72vw,30rem)]" priority />
-          <p className="mt-16 text-2xl font-medium tracking-[-0.04em] sm:text-4xl">
+          <p className="gate-copy mt-16">
             {copy.gate.label}
           </p>
           <button
-            className="mt-8 min-w-44 border border-white px-8 py-4 font-mono text-xs uppercase tracking-[0.2em] transition-colors hover:bg-white hover:text-black"
+            className="gate-confirm mt-8"
             onClick={confirmAccess}
             type="button"
           >
             {copy.gate.confirm}
           </button>
           <nav aria-label={copy.gate.language} className="mt-14">
-            <p className="mb-4 font-mono text-[0.6rem] uppercase tracking-[0.22em] text-white/45">
+            <p className="gate-language-label mb-4">
               {copy.gate.language}
             </p>
-            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-3 font-mono text-[0.65rem] uppercase tracking-[0.12em]">
+            <ul className="gate-locales flex flex-wrap justify-center gap-x-5 gap-y-3">
               {locales.map((item) => (
                 <li key={item}>
                   <a

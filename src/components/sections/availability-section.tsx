@@ -5,8 +5,11 @@ type AvailabilitySectionProps = {
 export function AvailabilitySection({ title }: AvailabilitySectionProps) {
   return (
     <section className="section-shell availability-section" id="availability">
-      <div aria-hidden="true" className="availability-seal reveal-scale" data-reveal />
-      <h2 className="section-title availability-title reveal-up" data-reveal>{title}</h2>
+      <div aria-hidden="true" className="availability-axis reveal-scale" data-reveal>
+        <span /><span /><span />
+      </div>
+      <SectionHeading className="availability-heading" index="04" title={title} />
     </section>
   );
 }
+import { SectionHeading } from "@/components/sections/section-heading";

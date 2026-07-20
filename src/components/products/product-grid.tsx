@@ -5,7 +5,7 @@ import {
   type DestinationProductCopy,
 } from "@/content/translations";
 
-const PANEL_SIZE = 8;
+const PANEL_SIZE = 12;
 
 type ProductGridProps = {
   copy: DestinationProductCopy;

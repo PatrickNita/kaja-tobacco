@@ -52,6 +52,17 @@
   color: var(--paper);
 }
 
+.header-scroll-fade {
+  position: fixed;
+  z-index: 39;
+  top: var(--header-rule-y);
+  right: 0;
+  left: 0;
+  height: 5dvh;
+  background: linear-gradient(to bottom, var(--ink), transparent);
+  pointer-events: none;
+}
+
 .header-start {
   display: flex;
   height: 100%;

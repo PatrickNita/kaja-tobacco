@@ -49,37 +49,40 @@ export function SiteHeader({ copy, destination, locale }: SiteHeaderProps) {
     : { kind: "home" as const, section: activeSection };
 
   return (
-    <header className="site-header">
-      <div className="header-start">
-        <a aria-label="KAJA" className="brand-chip" href={homeHref}>
-          <BrandLogo className="h-auto w-[4.75rem]" priority />
-        </a>
-        <LanguageSwitcher locale={locale} route={route} />
-      </div>
-      {destination ? (
-        <a className="nav-link return-home" href={localePath(locale)}>
-          <span className="nav-label">{copy.navigation.returnHome}</span>
-        </a>
-      ) : (
-        <nav aria-label="Primary" className="nav-rail">
-          <ul className="nav-list">
-            {sectionIds.map((id, index) => (
-              <li key={id}>
-                <a
-                  aria-current={activeSection === id ? "location" : undefined}
-                  className="nav-link"
-                  href={`#${id}`}
-                >
-                  <span aria-hidden="true" className="nav-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="nav-label">{copy.sections[id]}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-    </header>
+    <>
+      <div aria-hidden="true" className="header-scroll-fade" />
+      <header className="site-header">
+        <div className="header-start">
+          <a aria-label="KAJA" className="brand-chip" href={homeHref}>
+            <BrandLogo className="h-auto w-[4.75rem]" priority />
+          </a>
+          <LanguageSwitcher locale={locale} route={route} />
+        </div>
+        {destination ? (
+          <a className="nav-link return-home" href={localePath(locale)}>
+            <span className="nav-label">{copy.navigation.returnHome}</span>
+          </a>
+        ) : (
+          <nav aria-label="Primary" className="nav-rail">
+            <ul className="nav-list">
+              {sectionIds.map((id, index) => (
+                <li key={id}>
+                  <a
+                    aria-current={activeSection === id ? "location" : undefined}
+                    className="nav-link"
+                    href={`#${id}`}
+                  >
+                    <span aria-hidden="true" className="nav-index">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="nav-label">{copy.sections[id]}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </header>
+    </>
   );
 }

@@ -8,7 +8,6 @@ type ProductCardProps = {
 
 export function ProductCard({ copy, id }: ProductCardProps) {
   const number = formatProductId(id);
-  const variant = ((id - 1) % 4) + 1;
 
   return (
     <li className="product-card">
@@ -16,15 +15,8 @@ export function ProductCard({ copy, id }: ProductCardProps) {
         <div
           aria-label={`${copy.imageLabel} ${number}`}
           className="product-placeholder"
-          data-variant={variant}
           role="img"
-        >
-          <span className="product-placeholder-frame" />
-          <span className="product-placeholder-rule" />
-          <span aria-hidden="true" className="product-placeholder-index">
-            {number}
-          </span>
-        </div>
+        />
         <div className="product-card-copy">
           <h2>{copy.titlePrefix} {number}</h2>
           <p>{copy.description}</p>

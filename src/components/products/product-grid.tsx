@@ -5,7 +5,7 @@ import {
   type DestinationProductCopy,
 } from "@/content/translations";
 
-const PANEL_SIZE = 16;
+const PANEL_SIZE = 8;
 
 type ProductGridProps = {
   copy: DestinationProductCopy;
@@ -15,18 +15,17 @@ type ProductGridProps = {
 export function ProductGrid({ copy, destination }: ProductGridProps) {
   return (
     <div className={`product-gallery product-gallery-${destination}`}>
-      {productPanels.map((products, panelIndex) => {
-        const emptyCells = PANEL_SIZE - products.length;
-        const range = panelIndex === 0 ? "01–16" : "17–30";
+      {productPanels.map((panel, panelIndex) => {
+        const emptyCells = PANEL_SIZE - panel.ids.length;
 
         return (
           <section
-            aria-label={`${copy.titlePrefix} ${range}`}
+            aria-label={`${copy.titlePrefix} ${panel.range}`}
             className="product-panel"
             key={panelIndex}
           >
             <ol className="product-grid">
-              {products.map((id) => (
+              {panel.ids.map((id) => (
                 <ProductCard copy={copy} id={id} key={id} />
               ))}
               {Array.from({ length: emptyCells }, (_, index) => (

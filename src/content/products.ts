@@ -7,8 +7,10 @@ export const productIds = [
 export type ProductId = (typeof productIds)[number];
 
 export const productPanels = [
-  productIds.slice(0, 16),
-  productIds.slice(16),
+  { ids: productIds.slice(0, 8), range: "01–08" },
+  { ids: productIds.slice(8, 16), range: "09–16" },
+  { ids: productIds.slice(16, 24), range: "17–24" },
+  { ids: productIds.slice(24), range: "25–30" },
 ] as const;
 
 export function formatProductId(id: ProductId) {

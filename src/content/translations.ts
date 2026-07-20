@@ -22,7 +22,7 @@ export type LocalizedRoute =
   | { destination: DestinationId; kind: "destination" };
 
 export type DestinationProductCopy = {
-  description: string;
+  flavor: string;
   imageLabel: string;
   titlePrefix: string;
 };
@@ -50,12 +50,12 @@ export const content: Record<Locale, PageCopy> = {
     navigation: { returnHome: "RETURN HOME" },
     products: {
       catalogue: {
-        description: "Example catalogue product description.",
+        flavor: "STRAWBERRY",
         imageLabel: "Image placeholder for catalogue item",
         titlePrefix: "CATALOGUE ITEM",
       },
       merch: {
-        description: "Example merch product description.",
+        flavor: "STRAWBERRY",
         imageLabel: "Image placeholder for merch item",
         titlePrefix: "MERCH ITEM",
       },
@@ -76,12 +76,12 @@ export const content: Record<Locale, PageCopy> = {
     navigation: { returnHome: "ZURÜCK ZUR STARTSEITE" },
     products: {
       catalogue: {
-        description: "Beispielbeschreibung für ein Katalogprodukt.",
+        flavor: "ERDBEERE",
         imageLabel: "Bildplatzhalter für Katalogartikel",
         titlePrefix: "KATALOGARTIKEL",
       },
       merch: {
-        description: "Beispielbeschreibung für einen Merch-Artikel.",
+        flavor: "ERDBEERE",
         imageLabel: "Bildplatzhalter für Merch-Artikel",
         titlePrefix: "MERCH-ARTIKEL",
       },
@@ -102,12 +102,12 @@ export const content: Record<Locale, PageCopy> = {
     navigation: { returnHome: "VOLVER AL INICIO" },
     products: {
       catalogue: {
-        description: "Descripción de ejemplo de un producto del catálogo.",
+        flavor: "FRESA",
         imageLabel: "Espacio para la imagen del artículo de catálogo",
         titlePrefix: "ARTÍCULO DE CATÁLOGO",
       },
       merch: {
-        description: "Descripción de ejemplo de un artículo de merch.",
+        flavor: "FRESA",
         imageLabel: "Espacio para la imagen del artículo de merch",
         titlePrefix: "ARTÍCULO DE MERCH",
       },
@@ -128,12 +128,12 @@ export const content: Record<Locale, PageCopy> = {
     navigation: { returnHome: "НА ГЛАВНУЮ" },
     products: {
       catalogue: {
-        description: "Пример описания товара из каталога.",
+        flavor: "КЛУБНИКА",
         imageLabel: "Место для изображения позиции каталога",
         titlePrefix: "ПОЗИЦИЯ КАТАЛОГА",
       },
       merch: {
-        description: "Пример описания товара из раздела мерча.",
+        flavor: "КЛУБНИКА",
         imageLabel: "Место для изображения товара мерча",
         titlePrefix: "ТОВАР МЕРЧА",
       },
@@ -154,12 +154,12 @@ export const content: Record<Locale, PageCopy> = {
     navigation: { returnHome: "ÎNAPOI ACASĂ" },
     products: {
       catalogue: {
-        description: "Exemplu de descriere pentru un produs din catalog.",
+        flavor: "CĂPȘUNĂ",
         imageLabel: "Spațiu pentru imaginea articolului de catalog",
         titlePrefix: "ARTICOL DE CATALOG",
       },
       merch: {
-        description: "Exemplu de descriere pentru un articol merch.",
+        flavor: "CĂPȘUNĂ",
         imageLabel: "Spațiu pentru imaginea articolului merch",
         titlePrefix: "ARTICOL MERCH",
       },

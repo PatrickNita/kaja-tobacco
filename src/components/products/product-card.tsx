@@ -17,10 +17,8 @@ export function ProductCard({ copy, id }: ProductCardProps) {
           className="product-placeholder"
           role="img"
         />
-        <div className="product-card-copy">
-          <h2>{copy.titlePrefix} {number}</h2>
-          <p>{copy.description}</p>
-        </div>
+        <span className="product-badge">{copy.flavor}</span>
+        <h2 className="product-title">{copy.titlePrefix} {number}</h2>
       </article>
     </li>
   );

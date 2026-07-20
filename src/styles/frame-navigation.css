@@ -46,7 +46,7 @@
   display: flex;
   height: var(--header-rule-y);
   align-items: stretch;
-  padding: 0 1.35rem;
+  padding: calc(var(--frame-inset) + 1px) 1.35rem 0;
   border-bottom: 1px solid var(--line);
   background: transparent;
   color: var(--paper);
@@ -59,8 +59,8 @@
   background:
     linear-gradient(to bottom, var(--ink) 0, transparent 10dvh),
     linear-gradient(to top, var(--ink) 0, transparent 10dvh),
-    linear-gradient(to right, var(--ink) 0, transparent 10vw),
-    linear-gradient(to left, var(--ink) 0, transparent 10vw);
+    linear-gradient(to right, var(--ink) 0, transparent 5vw),
+    linear-gradient(to left, var(--ink) 0, transparent 5vw);
   background-repeat: no-repeat;
   pointer-events: none;
 }
@@ -242,7 +242,7 @@
 }
 
 @media (max-width: 767px) {
-  .site-header { padding: 0 0.7rem; }
+  .site-header { padding: calc(var(--frame-inset) + 1px) 0.7rem 0; }
   .brand-chip { width: 5.7rem; }
   .brand-chip img { width: 4.25rem; }
   .language-trigger { min-width: 2.9rem; padding: 0 0.4rem; font-size: 0.5rem; }

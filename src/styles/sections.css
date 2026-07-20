@@ -99,7 +99,7 @@
 
 .strength-heading {
   position: absolute;
-  bottom: var(--section-edge-y);
+  top: var(--section-edge-y);
   left: var(--section-edge-x);
 }
 

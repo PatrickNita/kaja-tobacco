@@ -50,7 +50,7 @@ export function SiteHeader({ copy, destination, locale }: SiteHeaderProps) {
 
   return (
     <>
-      <div aria-hidden="true" className="header-scroll-fade" />
+      <div aria-hidden="true" className="viewport-content-fade" />
       <header className="site-header">
         <div className="header-start">
           <a aria-label="KAJA" className="brand-chip" href={homeHref}>

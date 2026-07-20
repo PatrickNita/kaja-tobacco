@@ -48,18 +48,20 @@
   align-items: stretch;
   padding: 0 1.35rem;
   border-bottom: 1px solid var(--line);
-  background: var(--ink);
+  background: transparent;
   color: var(--paper);
 }
 
-.header-scroll-fade {
+.viewport-content-fade {
   position: fixed;
   z-index: 39;
-  top: var(--header-rule-y);
-  right: 0;
-  left: 0;
-  height: 5dvh;
-  background: linear-gradient(to bottom, var(--ink), transparent);
+  inset: 0;
+  background:
+    linear-gradient(to bottom, var(--ink) 0, transparent 10dvh),
+    linear-gradient(to top, var(--ink) 0, transparent 10dvh),
+    linear-gradient(to right, var(--ink) 0, transparent 10vw),
+    linear-gradient(to left, var(--ink) 0, transparent 10vw);
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 

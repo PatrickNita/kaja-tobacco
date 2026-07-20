@@ -57,8 +57,8 @@ export function SiteHeader({ copy, destination, locale }: SiteHeaderProps) {
         <LanguageSwitcher locale={locale} route={route} />
       </div>
       {destination ? (
-        <a className="return-home" href={localePath(locale)}>
-          {copy.navigation.returnHome}
+        <a className="nav-link return-home" href={localePath(locale)}>
+          <span className="nav-label">{copy.navigation.returnHome}</span>
         </a>
       ) : (
         <nav aria-label="Primary" className="nav-rail">

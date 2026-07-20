@@ -1,4 +1,5 @@
 import { AccessOverlay } from "@/components/access-overlay";
+import { ProductGrid } from "@/components/products/product-grid";
 import { SiteFrame } from "@/components/site-frame";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -24,8 +25,8 @@ export function DestinationPage({
       <SiteFrame />
       <SiteHeader copy={copy} destination={destination} locale={locale} />
       <main className="destination-main">
-        <div aria-hidden="true" className="destination-wordmark">KAJA</div>
-        <h1 className="destination-title">{copy.sections[destination]}</h1>
+        <h1 className="sr-only">{copy.sections[destination]}</h1>
+        <ProductGrid copy={copy.products[destination]} destination={destination} />
       </main>
     </div>
   );

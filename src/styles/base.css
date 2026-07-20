@@ -1,5 +1,6 @@
 :root {
   --frame-inset: 0.8rem;
+  --frame-axis-offset: 2.2rem;
   --header-rule-y: 5.2rem;
   --ink: #000;
   --paper: #f1f0eb;
@@ -16,6 +17,7 @@
 @media (max-width: 767px) {
   :root {
     --frame-inset: 0.45rem;
+    --frame-axis-offset: 1rem;
     --header-rule-y: 4.15rem;
   }
 }
